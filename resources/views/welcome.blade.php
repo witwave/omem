@@ -7,7 +7,7 @@
 @endif
 <div class="jumbotron masthead">
 	<div class="container">
-		<h3>全球时领袖社群会员火热招幕中</h3>
+		<h3>全球时领袖社群</h3>
 		<div>让天下没有陌生的孰悉的人，打造全球最大的华人本地化文化交流社群</div>
 		<p class="masthead-button-links">
 			<a role="button"  href="/join" class="btn btn-lg btn-primary btn-shadow">立即加入</a>
@@ -15,71 +15,39 @@
 	</div>
 </div>
 <div class="container">
-	<div class="row">
+	<div class="row text-center">
 		<div class="col-xs-12">
-			<h4 class="text-center text-primary">会员特权</h4>
+			<h4 class="text-center text-primary"></h4>
 		</div>
-		<div class="col-xs-6 col-sm-3 col-md-4">
+		<div class="col-xs-6 col-sm-6 col-md-3">
 			<div class="thumbnail">
 				<div class="caption">
-					<h3>会员特权</h3>
+					<a href="/meetup"><h3>线下活动</h3></a>
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-6 col-sm-3 col-md-4">
+		<div class="col-xs-6 col-sm-6 col-md-3">
 			<div class="thumbnail">
 				<div class="caption">
-					<h3>会员特权</h3>
+					<a href="/join"><h3>申请入会</h3></a>
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-6 col-sm-3 col-md-4">
+		<div class="col-xs-6 col-sm-6 col-md-3">
 			<div class="thumbnail">
 				<div class="caption">
-					<h3>会员特权</h3>
+					<a href="/aboutus"><h3>社群介绍</h3></a>
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-6 col-sm-3 col-md-4">
+		<div class="col-xs-6 col-sm-6 col-md-3">
 			<div class="thumbnail">
 				<div class="caption">
-					<h3>会员特权</h3>
+					<a href="/contactus"><h3>联系我们</h3></a>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<h4 class="text-center text-primary">商家赞助</h4>
-		</div>
-		<div class="col-xs-6 col-sm-3 col-md-4">
-			<div class="thumbnail">
-				<div class="caption">
-					<h4>赞助商</h4>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-6 col-sm-3 col-md-4">
-			<div class="thumbnail">
-				<div class="caption">
-					<h4>赞助商</h4>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-6 col-sm-3 col-md-4">
-			<div class="thumbnail">
-				<div class="caption">
-					<h4>赞助商</h4>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-6 col-sm-3 col-md-4">
-			<div class="thumbnail">
-				<div class="caption">
-					<h4>赞助商</h4>
-				</div>
-			</div>
-		</div>
-	</div>
+	@include('partner')
 </div>
 @endsection

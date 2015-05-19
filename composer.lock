@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "24c3946acc997e3f3eca7fc5c99585b2",
+    "hash": "96cc28702baf7ecadc386dcc02cff53f",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -825,6 +825,49 @@
                 "php"
             ],
             "time": "2015-05-02 15:40:40"
+        },
+        {
+            "name": "overtrue/wechat",
+            "version": "2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/wechat.git",
+                "reference": "514f713b10317bde0a0d8a08b7a65ba01eabe2bc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overtrue/wechat/zipball/514f713b10317bde0a0d8a08b7a65ba01eabe2bc",
+                "reference": "514f713b10317bde0a0d8a08b7a65ba01eabe2bc",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mcrypt": "*",
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "anzhengchao@gmail.com"
+                }
+            ],
+            "description": "微信SDK",
+            "keywords": [
+                "sdk",
+                "wechat",
+                "weixin",
+                "weixin-sdk"
+            ],
+            "time": "2015-05-18 10:40:01"
         },
         {
             "name": "psr/log",

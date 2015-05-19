@@ -3,8 +3,9 @@ use Input;
 use Cookie;
 use Session;
 use Redirect;
+
 use Illuminate\Http\Request;
-class JoinController extends Controller {
+class SignController extends Controller {
 	/*
 	|--------------------------------------------------------------------------
 	| Welcome Controller
@@ -25,20 +26,20 @@ class JoinController extends Controller {
 		$this->middleware('guest');
 	}
 	/**
-	* Show the application welcome screen to the user.
+	* 显示签到二群码，用户扫描二维码可以进行签到
 	*
 	* @return Response
 	*/
 	public function index()
 	{
-		return view('join.index');
-	}
-	public function showJoin()
-	{
-		return view('join.join');
+		return view('sign.index');
 	}
 	
-	public function join(Request $request)
+	/**
+	* 签到，
+	* 
+	*/
+	public function sign(Request $request)
 	{
 		/*
 		$this->validate($request, [
@@ -55,8 +56,9 @@ class JoinController extends Controller {
 		$inputs=Input::only('name','mobile','wechat','city','company','title','job','email','sign');
 		$inputs['pid']=Cookie::get('ref_pid');
 		*/
-		return redirect('/join')->with('msg', '申请加入成功！<br/>赶快分享给其它小伙伴吧，可能有意想不到的惊喜哟');
+		return redirect('sign.index')->with('msg', '签到成功！');
 	}
+
 	public function success(){
 		return view('join.success');
 	}

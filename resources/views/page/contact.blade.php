@@ -17,36 +17,9 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<h4 class="text-center text-primary">会员特权</h4>
+			<h4 class="text-center text-primary">联系我们</h4>
 		</div>
-		<div class="col-xs-6 col-sm-3 col-md-4">
-			<div class="thumbnail">
-				<div class="caption">
-					<h3>会员特权</h3>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-6 col-sm-3 col-md-4">
-			<div class="thumbnail">
-				<div class="caption">
-					<h3>会员特权</h3>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-6 col-sm-3 col-md-4">
-			<div class="thumbnail">
-				<div class="caption">
-					<h3>会员特权</h3>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-6 col-sm-3 col-md-4">
-			<div class="thumbnail">
-				<div class="caption">
-					<h3>会员特权</h3>
-				</div>
-			</div>
-		</div>
+		
 	</div>
 	@include('partner')
 </div>

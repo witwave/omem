@@ -17,35 +17,24 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<h4 class="text-center text-primary">会员特权</h4>
+			<h4 class="text-center text-primary">社群介绍</h4>
 		</div>
-		<div class="col-xs-6 col-sm-3 col-md-4">
-			<div class="thumbnail">
-				<div class="caption">
-					<h3>会员特权</h3>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-6 col-sm-3 col-md-4">
-			<div class="thumbnail">
-				<div class="caption">
-					<h3>会员特权</h3>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-6 col-sm-3 col-md-4">
-			<div class="thumbnail">
-				<div class="caption">
-					<h3>会员特权</h3>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-6 col-sm-3 col-md-4">
-			<div class="thumbnail">
-				<div class="caption">
-					<h3>会员特权</h3>
-				</div>
-			</div>
+		<div class="col-xs-12">
+			<dl>
+				<dt>全球时领袖社群名称的由来</dt>
+				<dd>
+				<p>
+				</p>
+				</dd>
+				<dt>全球时领袖的发起人</dt>
+				<dd><p>王震，洪城阳</p>
+				</dd>
+				<dt>全球时领袖社群的口号</dt>
+				<dd>
+					<p>让天下没有陌生的孰悉的人
+					</p>
+				</dd>
+			</dl>
 		</div>
 	</div>
 	@include('partner')

@@ -1,20 +1,26 @@
 <?php
-
+use Overtrue\Wechat\Auth;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
+| 首页：
+分为:线下活动,社群介绍，申请加入，联系我们
 |
 */
-Route::get('/', 'WelcomeController@index');
-Route::get('join', 'JoinController@index');
-Route::post('join', 'JoinController@join');
-
+Route::get('/', 'WelcomeController@index');//首页
+Route::get('/aboutus', 'PageController@about');//介绍页
+Route::get('/contactus', 'PageController@contact');//联系页
+Route::get('join/apply', 'JoinController@showJoin');//显示加入表单页
+Route::get('join', 'JoinController@index');//显示加入介绍页
+Route::post('join', 'JoinController@join');//处理加入页
+Route::get('meetup', 'MeetupController@index'); //显示活动主页
+Route::get('meetup/{id}', 'MeetupController@show');//显示活动详细
+Route::post('meetup/{id}/join', 'MeetupController@join');//报名参加
 Route::get('home', 'HomeController@index');
+
+Route::get('wechat',['middleware'=>'auth.wechat','uses'=>'WelcomeController@index']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
