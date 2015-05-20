@@ -13,6 +13,7 @@ return [
 	|
 	*/
 
+
 	'debug' => env('APP_DEBUG', false),
 
 	/*
@@ -192,6 +193,8 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+
+		'QrCode'    => 'Endroid\QrCode\QrCode'//二维码生成工具
 
 	],
 

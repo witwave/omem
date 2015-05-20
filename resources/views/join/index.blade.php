@@ -1,10 +1,6 @@
 @extends('main')
 @section('content')
-@if (Session::has('msg'))
-<div class="container" style="margin-top:5px">
-	<div class="alert alert-success" role="alert"><p>{!!Session::get('msg')!!}</p></div>
-</div>
-@endif
+@include('flash')
 <div class="jumbotron masthead">
 	<div class="container">
 		<h3>全球时领袖社群会员火热招幕中</h3>

@@ -26,3 +26,16 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+Route::get('qrcode', function(){
+    $size = Input::get('size');
+    $text = Input::get('text');
+    if(!$size || !$text) return '';
+    $qrCode = new QrCode();
+    $qrCode->setText($text);
+    $qrCode->setSize($size);
+    $qrCode->setPadding(10);
+    $response = Response::make($qrCode->get(), 200);
+    $response->header('content-type', 'image/png');
+    return $response;
+});

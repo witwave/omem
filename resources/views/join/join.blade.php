@@ -7,17 +7,7 @@
 				<p>欢迎加入全球时领袖社群</p>
 				<small>为了更好的服务，请如实填写以下信息</small>
 			</blockquote>
-			
-			@if (count($errors) > 0)
-			<div class="alert alert-danger">
-				<strong>注意!</strong> 您有一些信息填写出错.<br><br>
-				<ul>
-					@foreach ($errors->all() as $error)
-					<li>{{ $error }}</li>
-					@endforeach
-				</ul>
-			</div>
-			@endif
+			@include('alert')
 			<form class="form-horizontal" role="form" method="POST" action="{{ url('/join') }}">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<div class="form-group">
