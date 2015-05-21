@@ -3,14 +3,14 @@
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;
 
-class Inspire extends Command {
+class Test extends Command {
 
 	/**
 	 * The console command name.
 	 *
 	 * @var string
 	 */
-	protected $name = 'abc';
+	protected $name = 'test';
 
 	/**
 	 * The console command description.

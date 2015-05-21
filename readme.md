@@ -1,27 +1,31 @@
-## Laravel PHP Framework
+## scaffold 的使用
+php artisan make:scaffold Tweet --schema="title:string(50):default('Tweet #1'), body:text"
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+php artisan make:scaffold Topic --schema="title:string(100):default(''), body:text,cover:string(100):default(''),uid:integer:default(0),pv:integer:default(0),uv:integer,user_count:integer:default(0),deleted_at:timestamps"
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+##evnet 的使用
+生成自定义的event
+php artisan make:event MyEvent
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+生成自定义的handler
+php artisan handler:event MyEventHandler --event=MyEvent
 
-## Official Documentation
+然后在EventServiceProvider里面添加，可以添加多个，演示就只注册一个了
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+`protected $listen = [
+        'App\Events\MyEvent' => [
+            'App\Handlers\Events\MyEventHandler',
+        ],
+    ];`
 
-## Contributing
+ 调用
+ `Event::fire(App\Events\MyEvent($param))`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+ ## Console的使用
 
-## Security Vulnerabilities
+ --使用php artisan make:console Test
+ --在app\Console\Kernel中添加App\Console\Commands\Test
+ 
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
-### License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
