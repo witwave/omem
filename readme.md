@@ -1,102 +1,79 @@
-## scaffold 的使用
-php artisan make:scaffold Tweet --schema="title:string(50):default('Tweet #1'), body:text"
-
-php artisan make:scaffold Topic --schema="title:string(100):default(''), body:text,cover:string(100):default(''),uid:integer:default(0),pv:integer:default(0),uv:integer,user_count:integer:default(0),deleted_at:timestamps"
 
 
-php artisan make:scaffold Todo --schema="title:string(50):default('Tweet #1'), body:text,start_time:datetime,"
+###Todo List
 
-##evnet 的使用
-生成自定义的event
-php artisan make:event MyEvent
+####前台
+*线下活动报名
+*会员申请
+*用户报名的活动
+*社群介绍
 
-生成自定义的handler
-php artisan handler:event MyEventHandler --event=MyEvent
+###后台
+*活动管理（活动的编辑，活动报名名单查看）
+*社群管理
+*会员管理（增加事件信息，访谈，电话，邮箱，微信等)
 
-然后在EventServiceProvider里面添加，可以添加多个，演示就只注册一个了
+##数据结构设计
+会员
+ Member(id,pid,openid,wechat,qq,avatar,name,nickname,sex,mobile,email,company_name,company_site,position,industry,born_date,born_location,live_location,sign,mark)
 
-`protected $listen = [
-        'App\Events\MyEvent' => [
-            'App\Handlers\Events\MyEventHandler',
-        ],
-    ];`
+活动
+ Meetup(id,name,cover,summary,content,end_time,pv,uv,max_count,join_count,online,price,mark)
 
- 调用
- `Event::fire(App\Events\MyEvent($param))`
+参加人员
+ joiner(meetup_id,member_id,mobile,name,meetup_name,signed,signed_time)
 
- ## Console的使用
+事件
+  Event(id,member_id,type,content,mark)
 
- --使用php artisan make:console Test
- --在app\Console\Kernel中添加App\Console\Commands\Test
+页面
+  Page(id,name,title,content)
 
- php artisan
+
+##生成脚本
+ php artisan make:scaffold Member --schema="id:increments,pid:integer:default(0),
+ openid:string(64):default(''),
+ wechat:string(120):default(''),
+ qq:string(16):default(''),
+ avatar:string(200):default(''),
+ name:string(16),
+ nickname:string('20'):default(''),
+ sex:integer(1):default(3),
+ email:string(100):default(''),
+ company_name:string(128):default(0),
+ company_site:string(128),
+ position:string(100):default(''),
+ industry:string(100):default(''),
+ born_date:date,
+ born_location:string(100):default(''),
+ live_city:string(20):default(''),
+ address:string(256):default(''),
+ sign:string(1000):default(''),
+ mark:string(500):default(''),
+ deleted_at:timestamps"
+
+ php artisan make:scaffold Page --schema="id:increments,name:string(200),title：string(200),content:text:default('')"
+
+ php artisan make:scaffold Event --schema="id:increments,member_id:integer,type:string(100),content:string(10000),mark:string(500):default('')"
+
+
+
+
+
+
+
+
+
+
+
  
-<!-- Main content -->
-        <section class="content">
-          <div class="row">
-            <div class="col-md-3">
-              <div class="box box-solid">
-                <div class="box-header with-border">
-                  <h4 class="box-title">Draggable Events</h4>
-                </div>
-                <div class="box-body">
-                  <!-- the events -->
-                  <div id='external-events'>
-                    <div class='external-event bg-green'>Lunch</div>
-                    <div class='external-event bg-yellow'>Go home</div>
-                    <div class='external-event bg-aqua'>Do homework</div>
-                    <div class='external-event bg-light-blue'>Work on UI design</div>
-                    <div class='external-event bg-red'>Sleep tight</div>
-                    <div class="checkbox">
-                      <label for='drop-remove'>
-                        <input type='checkbox' id='drop-remove' />
-                        remove after drop
-                      </label>
-                    </div>
-                  </div>
-                </div><!-- /.box-body -->
-              </div><!-- /. box -->
-              <div class="box box-solid">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Create Event</h3>
-                </div>
-                <div class="box-body">
-                  <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                    <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
-                    <ul class="fc-color-picker" id="color-chooser">
-                      <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a></li>
-                      <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a></li>
-                      <li><a class="text-light-blue" href="#"><i class="fa fa-square"></i></a></li>
-                      <li><a class="text-teal" href="#"><i class="fa fa-square"></i></a></li>
-                      <li><a class="text-yellow" href="#"><i class="fa fa-square"></i></a></li>
-                      <li><a class="text-orange" href="#"><i class="fa fa-square"></i></a></li>
-                      <li><a class="text-green" href="#"><i class="fa fa-square"></i></a></li>
-                      <li><a class="text-lime" href="#"><i class="fa fa-square"></i></a></li>
-                      <li><a class="text-red" href="#"><i class="fa fa-square"></i></a></li>
-                      <li><a class="text-purple" href="#"><i class="fa fa-square"></i></a></li>
-                      <li><a class="text-fuchsia" href="#"><i class="fa fa-square"></i></a></li>
-                      <li><a class="text-muted" href="#"><i class="fa fa-square"></i></a></li>
-                      <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a></li>
-                    </ul>
-                  </div><!-- /btn-group -->
-                  <div class="input-group">
-                    <input id="new-event" type="text" class="form-control" placeholder="Event Title">
-                    <div class="input-group-btn">
-                      <button id="add-new-event" type="button" class="btn btn-primary btn-flat">Add</button>
-                    </div><!-- /btn-group -->
-                  </div><!-- /input-group -->
-                </div>
-              </div>
-            </div><!-- /.col -->
-            <div class="col-md-9">
-              <div class="box box-primary">
-                <div class="box-body no-padding">
-                  <!-- THE CALENDAR -->
-                  <div id="calendar"></div>
-                </div><!-- /.box-body -->
-              </div><!-- /. box -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </section><!-- /.content -->
-
+		$table->increments('id');
+			$table->string('name',150);
+			$table->string('cover',200)->nullable();
+			$table->string('summary',500)->nullable();
+			$table->text('content');
+			$table->date('endtime');//报名结束时间
+			$table->integer('pv')->default(0);
+			$table->integer('uv')->default(0);
+			$table->integer('join_count')->default(0);
 

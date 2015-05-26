@@ -32,6 +32,11 @@ Route::controllers([
 Route::resource("tweets", "TweetController");
 Route::resource("topics", "TopicController");
 
+Route::resource("pages","PageController");
+Route::resource("members","MemberController");
+Route::resource("events","EventController");
+
+
 Route::any('test/{abc}', function () {
     echo Request::path();
 });
