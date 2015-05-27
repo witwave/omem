@@ -15,88 +15,87 @@
                     <p class="form-control-static">{{$member->id}}</p>
                 </div>
                 <div class="form-group">
-                     <label for="id">ID</label>
-                     <p class="form-control-static">{{$member->id}}</p>
+                     <label for="
+pid">
+PID</label>
+                     <p class="form-control-static">{{$member->
+pid}}</p>
                 </div>
                     <div class="form-group">
-                     <label for="pid">PID</label>
-                     <p class="form-control-static">{{$member->pid}}</p>
+                     <label for="group_id">GROUP_ID</label>
+                     <p class="form-control-static">{{$member->group_id}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" openid"> OPENID</label>
-                     <p class="form-control-static">{{$member-> openid}}</p>
+                     <label for="openid">OPENID</label>
+                     <p class="form-control-static">{{$member->openid}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" wechat"> WECHAT</label>
-                     <p class="form-control-static">{{$member-> wechat}}</p>
+                     <label for="wechat">WECHAT</label>
+                     <p class="form-control-static">{{$member->wechat}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" qq"> QQ</label>
-                     <p class="form-control-static">{{$member-> qq}}</p>
+                     <label for="qq">QQ</label>
+                     <p class="form-control-static">{{$member->qq}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" avatar"> AVATAR</label>
-                     <p class="form-control-static">{{$member-> avatar}}</p>
+                     <label for="avatar">AVATAR</label>
+                     <p class="form-control-static">{{$member->avatar}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" name"> NAME</label>
-                     <p class="form-control-static">{{$member-> name}}</p>
+                     <label for="name">NAME</label>
+                     <p class="form-control-static">{{$member->name}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" nickname"> NICKNAME</label>
-                     <p class="form-control-static">{{$member-> nickname}}</p>
+                     <label for="nickname">NICKNAME</label>
+                     <p class="form-control-static">{{$member->nickname}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" sex"> SEX</label>
-                     <p class="form-control-static">{{$member-> sex}}</p>
+                     <label for="sex">SEX</label>
+                     <p class="form-control-static">{{$member->sex}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" email"> EMAIL</label>
-                     <p class="form-control-static">{{$member-> email}}</p>
+                     <label for="email">EMAIL</label>
+                     <p class="form-control-static">{{$member->email}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" company_name"> COMPANY_NAME</label>
-                     <p class="form-control-static">{{$member-> company_name}}</p>
+                     <label for="company_name">COMPANY_NAME</label>
+                     <p class="form-control-static">{{$member->company_name}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" company_site"> COMPANY_SITE</label>
-                     <p class="form-control-static">{{$member-> company_site}}</p>
+                     <label for="company_site">COMPANY_SITE</label>
+                     <p class="form-control-static">{{$member->company_site}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" position"> POSITION</label>
-                     <p class="form-control-static">{{$member-> position}}</p>
+                     <label for="position">POSITION</label>
+                     <p class="form-control-static">{{$member->position}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" industry"> INDUSTRY</label>
-                     <p class="form-control-static">{{$member-> industry}}</p>
+                     <label for="industry">INDUSTRY</label>
+                     <p class="form-control-static">{{$member->industry}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" born_date"> BORN_DATE</label>
-                     <p class="form-control-static">{{$member-> born_date}}</p>
+                     <label for="born_date">BORN_DATE</label>
+                     <p class="form-control-static">{{$member->born_date}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" born_location"> BORN_LOCATION</label>
-                     <p class="form-control-static">{{$member-> born_location}}</p>
+                     <label for="born_location">BORN_LOCATION</label>
+                     <p class="form-control-static">{{$member->born_location}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" live_city"> LIVE_CITY</label>
-                     <p class="form-control-static">{{$member-> live_city}}</p>
+                     <label for="live_city">LIVE_CITY</label>
+                     <p class="form-control-static">{{$member->live_city}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" address"> ADDRESS</label>
-                     <p class="form-control-static">{{$member-> address}}</p>
+                     <label for="address">ADDRESS</label>
+                     <p class="form-control-static">{{$member->address}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" sign"> SIGN</label>
-                     <p class="form-control-static">{{$member-> sign}}</p>
+                     <label for="sign">SIGN</label>
+                     <p class="form-control-static">{{$member->sign}}</p>
                 </div>
                     <div class="form-group">
-                     <label for=" mark"> MARK</label>
-                     <p class="form-control-static">{{$member-> mark}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for=" deleted_at"> DELETED_AT</label>
-                     <p class="form-control-static">{{$member-> deleted_at}}</p>
+                     <label for="mark">MARK</label>
+                     <p class="form-control-static">{{$member->mark}}</p>
                 </div>
             </form>
 

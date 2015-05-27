@@ -4,10 +4,10 @@
         <span class="sr-only">Toggle navigation</span>
     </a>
     <!-- Navbar Right Menu -->
-    <div class="navbar-custom-menu">
+    <div class="navbar-custom-menu ">
         <ul class="nav navbar-nav">
             <!-- Messages: style can be found in dropdown.less-->
-            <li class="dropdown messages-menu">
+            <li class="dropdown messages-menu hide">
                 <!-- Menu toggle button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-envelope-o"></i>
@@ -44,7 +44,7 @@
             <!-- /.messages-menu -->
 
             <!-- Notifications Menu -->
-            <li class="dropdown notifications-menu">
+            <li class="dropdown notifications-menu hide">
                 <!-- Menu toggle button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-bell-o"></i>
@@ -67,7 +67,7 @@
                 </ul>
             </li>
             <!-- Tasks Menu -->
-            <li class="dropdown tasks-menu">
+            <li class="dropdown tasks-menu hide">
                 <!-- Menu Toggle Button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-flag-o"></i>
@@ -111,20 +111,19 @@
                     <!-- The user image in the navbar-->
                     <img src="{{ url('dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image"/>
                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                    <span class="hidden-xs">Alexander Pierce</span>
+                    <span class="hidden-xs">{{ Auth::user()->name}}</span>
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu ">
                     <!-- The user image in the menu -->
-                    <li class="user-header">
+                    <li class="user-header hide">
                         <img src="{{ url('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image"/>
-
                         <p>
                             Alexander Pierce - Web Developer
                             <small>Member since Nov. 2012</small>
                         </p>
                     </li>
                     <!-- Menu Body -->
-                    <li class="user-body">
+                    <li class="user-body hide">
                         <div class="col-xs-4 text-center">
                             <a href="#">Followers</a>
                         </div>
@@ -137,11 +136,11 @@
                     </li>
                     <!-- Menu Footer-->
                     <li class="user-footer">
-                        <div class="pull-left">
+                        <div class="pull-left hide">
                             <a href="#" class="btn btn-default btn-flat">Profile</a>
                         </div>
                         <div class="pull-right">
-                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                            <a href="{{ url('/auth/logout') }}" class="btn btn-default btn-flat">退出</a>
                         </div>
                     </li>
                 </ul>

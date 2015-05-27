@@ -10,16 +10,24 @@ use Endroid\QrCode\QrCode;
 分为:线下活动,社群介绍，申请加入，联系我们
 |
  */
-Route::get('/', 'WelcomeController@index'); //首页
-Route::get('/aboutus', 'PageController@about'); //介绍页
-Route::get('/contactus', 'PageController@contact'); //联系页
+
+Route::any('auth/wechat', function () {
+    $appId = Config::get('wechat.appid');
+    $secret = Config::get('wechat.appsecret');
+    $callback = 'http://new.lovejog.com';
+    return view('auth.wechat', ['appid' => $appId, 'secret' => $secret, 'callback_uri' => $callback]);
+});
+
+Route::get('', 'WelcomeController@index'); //首页
+Route::get('aboutus', 'PageController@about'); //介绍页
+Route::get('contactus', 'PageController@contact'); //联系页
 Route::get('join/apply', 'JoinController@showJoin'); //显示加入表单页
 Route::get('join', 'JoinController@index'); //显示加入介绍页
 Route::post('join', 'JoinController@join'); //处理加入页
 Route::get('meetup', 'MeetupController@index'); //显示活动主页
 Route::get('meetup/{id}', 'MeetupController@show'); //显示活动详细
 Route::post('meetup/{id}/join', 'MeetupController@join'); //报名参加
-Route::get('home', 'HomeController@index');
+
 
 Route::get('wechat', ['middleware' => 'auth.wechat', 'uses' => 'WelcomeController@index']);
 
@@ -29,12 +37,25 @@ Route::controllers([
 ]);
 
 
-Route::resource("tweets", "TweetController");
-Route::resource("topics", "TopicController");
+/**
+ * 后台管理控制器
+ */
+Route::group(['middleware' => 'auth.admin'], function () {
 
-Route::resource("pages","PageController");
-Route::resource("members","MemberController");
-Route::resource("events","EventController");
+    Route::get('dashboard', 'DashboardController@index');
+
+    Route::resource("meetups", "MeetupController");
+    Route::resource("joiners", "JoinerController");
+
+    Route::resource("groups", "GroupController");
+    Route::resource("members", "MemberController");
+    Route::resource("events", "EventController");
+
+    Route::resource("pages", "PageController");
+
+    Route::resource("tweets", "TweetController");
+    Route::resource("topics", "TopicController");
+});
 
 
 Route::any('test/{abc}', function () {

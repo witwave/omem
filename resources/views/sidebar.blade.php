@@ -3,7 +3,7 @@
     @if ($sidebar = Config::get('menu.data'))
         @foreach($sidebar as $item)
             @if(isset($item['children']))
-                <li class="treeview {{ str_contains(Request::path(),$item['prefix']) ?'active':'' }}">
+                <li class="treeview {{ str_contains(Request::path(),$item['path']) ?'active':'' }}">
                     <a href="#"><i class='fa {{ $item['icon'] }}'></i>
                         <span>{{ $item['name'] }}</span>
                         <i class="fa fa-angle-left pull-right"></i>
@@ -19,7 +19,7 @@
                     </ul>
                 </li>
             @else
-                <li class="{{ Request::path()==$item['path']?'active':'' }}">
+                <li class="{{ str_contains(Request::path(),$item['path'])?'active':'' }}">
                     <a href="{{ url($item['path']) }}">
                         <i class='fa {{ $item['icon'] }}'></i>
                         <span>{{ $item['name'] }}</span>
