@@ -24,14 +24,36 @@ return [
         'user' => ['name' => 'user', 'path' => 'user', 'icon' => 'fa fa-link'],
     ]
     */
-    'name'=>'Laravel测试',
-    'short_name'=>'测试',
     'data' => [
-        'dashboard' => ['name' => '控制台', 'path' => 'dashboard', 'icon' => 'fa fa-dashboard'],
-        'group' => ['name' => '社群', 'path' => 'groups', 'icon' => 'fa fa-link'],
-        'members' => ['name' => '会员', 'path' => 'members', 'icon' => 'fa fa-link'],
-        'meetups' => ['name' => '活动', 'path' => 'meetups', 'icon' => 'fa fa-link'],
-        'todo' => ['name' => '计划', 'path' => 'todo', 'icon' => 'fa fa-link'],
-        'user' => ['name' => '用户', 'path' => 'user', 'icon' => 'fa fa-link'],
+        'dashboard' => [
+            'name' => '控制台',
+            'path' => 'dashboard',
+            'icon' => 'fa fa-dashboard'
+        ],
+        'meetups' => [
+            'name' => '活动',
+            'path' => 'meetups',
+            'icon' => 'fa fa-server'
+        ],
+        'group' => [
+            'name' => '社群',
+            'path' => 'groups',
+            'icon' => 'fa fa-group'
+        ],
+        'members' => [
+            'name' => '会员',
+            'path' => 'members',
+            'icon' => 'fa fa-user'
+        ],
+        'todo' => [
+            'name' => '计划',
+            'path' => 'todo',
+            'icon' => 'fa fa-tasks'
+        ],
+        'user' => [
+            'name' => '用户',
+            'path' => 'user',
+            'icon' => 'fa  fa-cog'
+        ],
     ]
 ];

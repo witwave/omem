@@ -14,7 +14,8 @@
     <!-- Theme style -->
     <link href="{{ url('dist/css/AdminLTE.min.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{ url('dist/css/skins/skin-blue.min.css') }}" rel="stylesheet" type="text/css"/>
-
+    <link href="{{ url('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url('plugins/timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet"/>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -51,9 +52,9 @@ desired effect
         <!-- Logo -->
         <a href="{{  url('/dashboard') }}" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini">{!! Config::get('menu.short_name') !!}</span>
+            <span class="logo-mini">{!! Config::get('app.short_name') !!}</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg">{!! Config::get('menu.name') !!}</span>
+            <span class="logo-lg">{!! Config::get('app.name') !!}</span>
         </a>
 
         <!-- Header Navbar -->
@@ -73,15 +74,8 @@ desired effect
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header hide">
-            <h1>
-                Page Header
-                <small>Optional description</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                <li class="active">Here</li>
-            </ol>
+        <section class="content-header">
+            @yield('content-header')
         </section>
 
         <!-- Main content -->
@@ -96,10 +90,11 @@ desired effect
     <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-            Anything you want
+            {{  Config::get('app.version') }}
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; {{ date('Y') }} <a href="http://www.witleaf.com">WitLeaf</a>.</strong> All rights
+        reserved.
     </footer>
 
 </div>
@@ -110,8 +105,24 @@ desired effect
 <script src="{{ url('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
 <!-- Bootstrap 3.3.2 JS -->
 <script src="{{ url('js/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ url('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}" type="text/javascript"></script>
+<script src="{{ url('plugins/timepicker/bootstrap-timepicker.min.js') }}" type="text/javascript"></script>
+
+<script src="{{ url('plugins/input-mask/jquery.inputmask.js') }}" type="text/javascript"></script>
+<script src="{{ url('plugins/input-mask/jquery.inputmask.date.extensions.js') }}" type="text/javascript"></script>
+<script src="{{ url('plugins/input-mask/jquery.inputmask.extensions.js') }}" type="text/javascript"></script>
 <!-- AdminLTE App -->
 <script src="{{ url('dist/js/app.min.js') }}" type="text/javascript"></script>
 
+<script type="text/javascript">
+    $(function () {
+        $(".timepicker").timepicker({
+            showInputs: false
+        });
+        $(".date-mask").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
+        $(".textarea").wysihtml5();
+
+    });
+</script>
 </body>
 </html>
