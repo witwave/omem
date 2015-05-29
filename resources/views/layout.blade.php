@@ -16,6 +16,7 @@
     <link href="{{ url('dist/css/skins/skin-blue.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ url('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ url('plugins/timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet"/>
+    <link href="{{ url('plugins/iCheck/flat/blue.css') }}" rel="stylesheet" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -111,6 +112,7 @@ desired effect
 <script src="{{ url('plugins/input-mask/jquery.inputmask.js') }}" type="text/javascript"></script>
 <script src="{{ url('plugins/input-mask/jquery.inputmask.date.extensions.js') }}" type="text/javascript"></script>
 <script src="{{ url('plugins/input-mask/jquery.inputmask.extensions.js') }}" type="text/javascript"></script>
+<script src="{{ url('plugins/iCheck/icheck.min.js') }}" type="text/javascript"></script>
 <!-- AdminLTE App -->
 <script src="{{ url('dist/js/app.min.js') }}" type="text/javascript"></script>
 
@@ -121,6 +123,27 @@ desired effect
         });
         $(".date-mask").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
         $(".textarea").wysihtml5();
+
+
+        $('.mailbox-messages input[type="checkbox"]').iCheck({
+            checkboxClass: 'icheckbox_flat-blue',
+            radioClass: 'iradio_flat-blue'
+        });
+
+        //Enable check and uncheck all functionality
+        $(".checkbox-toggle").click(function () {
+            var clicks = $(this).data('clicks');
+            if (clicks) {
+                //Uncheck all checkboxes
+                $(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
+                $(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
+            } else {
+                //Check all checkboxes
+                $(".mailbox-messages input[type='checkbox']").iCheck("check");
+                $(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
+            }
+            $(this).data("clicks", !clicks);
+        });
 
     });
 </script>

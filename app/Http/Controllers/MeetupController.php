@@ -90,7 +90,9 @@ class MeetupController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $meetup = Meetup::findOrFail($id);
+
         $meetup->name = $request->input("name");
         $meetup->summary = $request->input("summary");
         $meetup->content = $request->input("content");

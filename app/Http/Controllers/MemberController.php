@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Group;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -14,11 +15,26 @@ class MemberController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $members = Member::all();
+        $size = 1;
 
-        return view('members.index', compact('members'));
+        $groups = Group::all();
+        $builder = Member::query();
+
+        $q = $request->get('q', null);
+        if ($q) {
+            $builder->where('name', 'LIKE', '%' . $q . '%');
+        }
+
+        $gid = $request->get('gid', null);
+        if ($gid) {
+            $builder->where('group_id', '=', $gid);
+        }
+
+        $members = $builder->paginate($size);
+
+        return view('members.index', compact('members', 'groups', 'gid', 'size', 'q'));
     }
 
     /**
@@ -42,13 +58,14 @@ class MemberController extends Controller
         $member = new Member();
 
         $member->pid = $request->input("pid", 0);
-        $member->openid = $request->input("openid",'');
-        $member->wechat = $request->input("wechat",'');
-        $member->qq = $request->input("qq",'');
-        $member->avatar = $request->input("avatar",'');
+        $member->openid = $request->input("openid", '');
+        $member->wechat = $request->input("wechat", '');
+        $member->phone = $request->input("phone");
+        $member->qq = $request->input("qq", '');
+        $member->avatar = $request->input("avatar", '');
         $member->name = $request->input("name");
-        $member->nickname = $request->input("nickname",'');
-        $member->sex = $request->input("sex",3);
+        $member->nickname = $request->input("nickname", '');
+        $member->sex = $request->input("sex", 3);
         $member->email = $request->input("email");
         $member->company_name = $request->input("company_name");
         $member->company_site = $request->input("company_site");
@@ -58,7 +75,7 @@ class MemberController extends Controller
         $member->born_location = $request->input("born_location");
         $member->live_city = $request->input("live_city");
         $member->address = $request->input("address");
-        $member->sign = 0;
+        $member->sign = $request->input("sign");
         $member->mark = $request->input("mark");
 
         $member->save();
@@ -103,28 +120,26 @@ class MemberController extends Controller
     {
         $member = Member::findOrFail($id);
 
-        $member->id = $request->input("id");
         $member->pid = $request->input("pid");
-        $member->openid = $request->input(" openid");
-        $member->wechat = $request->input(" wechat");
-        $member->qq = $request->input(" qq");
-        $member->avatar = $request->input(" avatar");
-        $member->name = $request->input(" name");
-        $member->nickname = $request->input(" nickname");
-        $member->sex = $request->input(" sex");
-        $member->email = $request->input(" email");
-        $member->company_name = $request->input(" company_name");
-        $member->company_site = $request->input(" company_site");
-        $member->position = $request->input(" position");
-        $member->industry = $request->input(" industry");
-        $member->born_date = $request->input(" born_date");
-        $member->born_location = $request->input(" born_location");
-        $member->live_city = $request->input(" live_city");
-        $member->address = $request->input(" address");
-        $member->sign = $request->input(" sign");
-        $member->mark = $request->input(" mark");
-        $member->deleted_at = $request->input(" deleted_at");
-
+        $member->openid = $request->input("openid");
+        $member->wechat = $request->input("wechat");
+        $member->qq = $request->input("qq");
+        $member->phone = $request->input("phone");
+        $member->avatar = $request->input("avatar");
+        $member->name = $request->input("name");
+        $member->nickname = $request->input("nickname");
+        $member->sex = $request->input("sex");
+        $member->email = $request->input("email");
+        $member->company_name = $request->input("company_name");
+        $member->company_site = $request->input("company_site");
+        $member->position = $request->input("position");
+        $member->industry = $request->input("industry");
+        $member->born_date = $request->input("born_date");
+        $member->born_location = $request->input("born_location");
+        $member->live_city = $request->input("live_city");
+        $member->address = $request->input("address");
+        $member->sign = $request->input("sign");
+        $member->mark = $request->input("mark");
         $member->save();
 
         return redirect()->route('members.index')->with('message', 'Item updated successfully.');

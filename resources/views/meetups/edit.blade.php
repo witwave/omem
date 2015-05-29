@@ -3,12 +3,12 @@
 @section('content-header')
     <h1>
         活动
-        <small>新增</small>
+        <small>编辑</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ url('/dashboard') }}"><i class="fa fa-dashboard"></i> 控制台</a></li>
-        <li><a href="{{ url('/groups') }}">社群</a></li>
-        <li class="active">新增活动</li>
+        <li><a href="{{ url('/meetups') }}">活动</a></li>
+        <li class="active">编辑活动</li>
     </ol>
 @endsection
 
@@ -19,11 +19,11 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">新增活动</h3>
+                    <h3 class="box-title">编辑活动</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form action="{{ route('meetups.update') }}" method="POST">
+                <form action="{{ route('meetups.update',$meetup->id) }}" method="POST">
                     <div class="box-body">
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -47,7 +47,6 @@
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label for="end_time">报名截止日期</label>
-
                                 <div class="input-group">
                                     <input type="text" class="form-control date-mask" name="end_time"
                                            value="{{ $meetup->end_time }}"/>
@@ -62,26 +61,27 @@
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label for="max_count">最大人数</label>
-                                <input type="number" name="max_count" class="form-control" min="0" value="{{ $meetup->max_count }}"/>
+                                <input type="number" name="max_count" class="form-control" min="0"
+                                       value="{{ $meetup->max_count }}"/>
                             </div>
                             <div class="form-group col-lg-6">
                                 <label for="price">价格</label>
-
                                 <div class="input-group">
                                     <span class="input-group-addon">￥</span>
-                                    <input type="number" class="form-control" name="price" value="0" min="{{ $meetups->price }}">
+                                    <input type="number" class="form-control" name="price" value="0"
+                                           min="{{ $meetup->price }}">
                                     <span class="input-group-addon">.00</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="online" value="1" {{ $meetups->online?'checked':'' }}> 是否发布
-                            </label>
-                        </div>
                         <div class="form-group">
                             <label for="mark">备注</label>
                             <input type="text" name="mark" class="form-control" value=""/>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="online" value="1" {{ $meetup->online?'checked':'' }}> 是否发布
+                            </label>
                         </div>
                     </div>
                     <div class="box-footer">

@@ -23,7 +23,7 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form action="{{ route('groups.update') }}" method="POST">
+                <form action="{{ route('groups.update', $group->id) }}" method="POST">
                     <div class="box-body">
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
