@@ -9,6 +9,18 @@ use Illuminate\Http\Request;
 class MeetupController extends Controller
 {
 
+    public function main()
+    {
+        $meetups = Meetup::all();
+        return view('meetup.index', compact('meetups'));
+    }
+
+    public function detaill($id)
+    {
+        $meetup = Meetup::findOrFail($id);
+        return view('meetup.detail', compact('meetup'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +29,6 @@ class MeetupController extends Controller
     public function index()
     {
         $meetups = Meetup::all();
-
         return view('meetups.index', compact('meetups'));
     }
 

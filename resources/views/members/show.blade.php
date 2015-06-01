@@ -1,111 +1,207 @@
+<?php $config_events = Config::get('wechat.events') ?>
 @extends('layout')
 
+@section('content-header')
+    <h1>
+        会员
+        <small>查看</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{ url('/dashboard') }}"><i class="fa fa-dashboard"></i> 控制台</a></li>
+        <li><a href="{{ url('/members') }}">会员</a></li>
+        <li class="active">查看</li>
+    </ol>
+@endsection
+
 @section('content')
-    <div class="page-header">
-        <h1>Members / Show </h1>
-    </div>
-
-
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-xs-6">
+            <div class="box box-danger">
+                <div class="box-header">
+                    时间线
+                    <div class="box-tools pull-right">
+                        <div class="has-feedback">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modal">新增事件</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="col-md-12">
 
-            <form action="#">
-                <div class="form-group">
-                    <label for="nome">ID</label>
-                    <p class="form-control-static">{{$member->id}}</p>
-                </div>
-                <div class="form-group">
-                     <label for="
-pid">
-PID</label>
-                     <p class="form-control-static">{{$member->
-pid}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="group_id">GROUP_ID</label>
-                     <p class="form-control-static">{{$member->group_id}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="openid">OPENID</label>
-                     <p class="form-control-static">{{$member->openid}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="wechat">WECHAT</label>
-                     <p class="form-control-static">{{$member->wechat}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="qq">QQ</label>
-                     <p class="form-control-static">{{$member->qq}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="avatar">AVATAR</label>
-                     <p class="form-control-static">{{$member->avatar}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="name">NAME</label>
-                     <p class="form-control-static">{{$member->name}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="nickname">NICKNAME</label>
-                     <p class="form-control-static">{{$member->nickname}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="sex">SEX</label>
-                     <p class="form-control-static">{{$member->sex}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="email">EMAIL</label>
-                     <p class="form-control-static">{{$member->email}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="company_name">COMPANY_NAME</label>
-                     <p class="form-control-static">{{$member->company_name}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="company_site">COMPANY_SITE</label>
-                     <p class="form-control-static">{{$member->company_site}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="position">POSITION</label>
-                     <p class="form-control-static">{{$member->position}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="industry">INDUSTRY</label>
-                     <p class="form-control-static">{{$member->industry}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="born_date">BORN_DATE</label>
-                     <p class="form-control-static">{{$member->born_date}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="born_location">BORN_LOCATION</label>
-                     <p class="form-control-static">{{$member->born_location}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="live_city">LIVE_CITY</label>
-                     <p class="form-control-static">{{$member->live_city}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="address">ADDRESS</label>
-                     <p class="form-control-static">{{$member->address}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="sign">SIGN</label>
-                     <p class="form-control-static">{{$member->sign}}</p>
-                </div>
-                    <div class="form-group">
-                     <label for="mark">MARK</label>
-                     <p class="form-control-static">{{$member->mark}}</p>
-                </div>
-            </form>
+                        <ul class="timeline">
+                            @foreach($events as $day=>$items)
 
+                                <li class="time-label">
+                                  <span class="bg-red">
+                                    {{ date('Y-m-d',strtotime($member->created_at))  }}
+                                  </span>
+                                </li>
+                                @foreach($items as $event)
+                                    <li>
+                                        <i class="fa fa-{{$event->type}} bg-green"></i>
 
+                                        <div class="timeline-item">
+                                            <span class="time">
+                                                <i class="fa fa-clock-o"></i>
+                                                {{ date('H:m',strtotime($event->created_at))  }}
+                                            </span>
 
-            <a class="btn btn-default" href="{{ route('members.index') }}">Back</a>
-            <a class="btn btn-warning" href="{{ route('members.edit', $member->id) }}">Edit</a>
-            <form action="#/$member->id" method="DELETE" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };"><button class="btn btn-danger" type="submit">Delete</button></form>
+                                            <h3 class="timeline-header">{{ isset($config_events[$event->type])?$config_events[$event->type]:$event->type }}</h3>
+
+                                            <div class="timeline-body">
+                                                {{ $event->content }}
+                                                <p><small>{{ $event->mark }}</small></p>
+                                            </div>
+                                            <div class='timeline-footer'>
+                                                <form action="{{ route('events.destroy', $event->id) }}" method="POST"
+                                                      style="display: inline;"
+                                                      onsubmit="if(confirm('确认删除?')) { return true } else {return false };">
+                                                    <input type="hidden" name="_method" value="DELETE"><input
+                                                            type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <button class="btn btn-danger btn-xs" type="submit">删除</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            @endforeach
+
+                            <li class="time-label">
+                              <span class="bg-green">
+                                {{ date('Y-m-d',strtotime($member->created_at))  }}
+                              </span>
+                            </li>
+                            <li>
+                                <i class="fa fa-circle bg-blue"></i>
+
+                                <div class="timeline-item">
+                                    <span class="time">
+                                        <i class="fa fa-clock-o"></i>
+                                        {{ date('H:m',strtotime($member->created_at))  }}
+                                    </span>
+
+                                    <h3 class="timeline-header">申请加入</h3>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- left column -->
+        <div class="col-xs-6">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-header">
+                    <div class="box-title">会员信息</div>
+                </div>
+                <form>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="wechat">微信</label>
+
+                            <p class="form-control-static">{{$member->wechat}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="qq">QQ</label>
+
+                            <p class="form-control-static">{{$member->qq}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="avatar">图像</label>
+
+                            <p class="form-control-static">{{$member->avatar}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">姓名</label>
+
+                            <p class="form-control-static">{{$member->name}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="nickname">昵称</label>
+
+                            <p class="form-control-static">{{$member->nickname}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="sex">性别</label>
+
+                            <p class="form-control-static">{{$member->sex==1?'男':($member->sex==2?'女':'N/A')}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">邮箱</label>
+
+                            <p class="form-control-static">{{$member->email}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="company_name">公司</label>
+
+                            <p class="form-control-static">{{$member->company_name}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="company_site">公司网站</label>
+
+                            <p class="form-control-static">{{$member->company_site}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="position">职位</label>
+
+                            <p class="form-control-static">{{$member->position}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="industry">行业</label>
+
+                            <p class="form-control-static">{{$member->industry}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="born_date">出生年月</label>
+
+                            <p class="form-control-static">{{$member->born_date}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="born_location">出生位置</label>
+
+                            <p class="form-control-static">{{$member->born_location}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="live_city">出生城市</label>
+
+                            <p class="form-control-static">{{$member->live_city}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">地址</label>
+
+                            <p class="form-control-static">{{$member->address}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="sign">签名</label>
+
+                            <p class="form-control-static">{{$member->sign}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="mark">备注</label>
+
+                            <p class="form-control-static">{{$member->mark}}</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+@endsection
 
 
+@section('modal')
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">新增事件</h4>
+    </div>
+    <div class="modal-body">
+        @include('events.create')
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary btn-submit">保存</button>
+    </div>
 @endsection

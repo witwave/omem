@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<title>{{ isset($title)?$title:'全球时领袖社群' }}</title>
+		<title>@yield('title')</title>
 		<link href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 		<!-- Fonts -->
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -35,7 +35,7 @@
 						<li><a href="{{ url('/meetup') }}">线下活动</a></li>
 						<li><a href="{{ url('/join') }}">申请入会</a></li>
 						<li><a href="{{ url('/aboutus') }}">关于社群</a></li>
-						<li><a href="{{ url('/contantus') }}">联系我们</a></li>
+						<li><a href="{{ url('/contactus') }}">联系我们</a></li>
 					</ul>
 				</div>
 			</div>

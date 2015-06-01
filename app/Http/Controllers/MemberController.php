@@ -18,22 +18,17 @@ class MemberController extends Controller
     public function index(Request $request)
     {
         $size = 1;
-
         $groups = Group::all();
         $builder = Member::query();
-
         $q = $request->get('q', null);
         if ($q) {
             $builder->where('name', 'LIKE', '%' . $q . '%');
         }
-
         $gid = $request->get('gid', null);
         if ($gid) {
             $builder->where('group_id', '=', $gid);
         }
-
         $members = $builder->paginate($size);
-
         return view('members.index', compact('members', 'groups', 'gid', 'size', 'q'));
     }
 
@@ -92,8 +87,12 @@ class MemberController extends Controller
     public function show($id)
     {
         $member = Member::findOrFail($id);
-
-        return view('members.show', compact('member'));
+        $data = $member->events->sortByDesc('created_at');
+        $events = [];
+        foreach ($data as $event) {
+            $events[date('Y-m-d', strtotime($event->created_at))][] = $event;
+        }
+        return view('members.show', compact('member', 'events'));
     }
 
     /**

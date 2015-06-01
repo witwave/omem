@@ -14,9 +14,10 @@
     <!-- Theme style -->
     <link href="{{ url('dist/css/AdminLTE.min.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{ url('dist/css/skins/skin-blue.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ url('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet"
+          type="text/css"/>
     <link href="{{ url('plugins/timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet"/>
-    <link href="{{ url('plugins/iCheck/flat/blue.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('plugins/iCheck/flat/blue.css') }}" rel="stylesheet" type="text/css"/>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -99,6 +100,14 @@ desired effect
     </footer>
 
 </div>
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @yield('modal')
+        </div>
+    </div>
+</div>
 <!-- ./wrapper -->
 
 
@@ -121,6 +130,7 @@ desired effect
         $(".timepicker").timepicker({
             showInputs: false
         });
+
         $(".date-mask").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
         $(".textarea").wysihtml5();
 
@@ -145,6 +155,22 @@ desired effect
             $(this).data("clicks", !clicks);
         });
 
+        $('.btn-submit').click(function (e) {
+            e.preventDefault();
+            var form = $('.btn-submit').parent().parent().find('form');
+            var url = form.attr('action');
+            var data = form.serialize();
+            $.post(url, data, function (data, status, xhr) {
+                if (status === 'success') {
+                    $('#dialog').modal('close');
+                    window.location.reload();
+                    return true;
+                } else {
+                    alert('保存失败');
+                    return false;
+                }
+            });
+        });
     });
 </script>
 </body>

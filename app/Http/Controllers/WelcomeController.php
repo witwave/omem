@@ -30,7 +30,7 @@ class WelcomeController extends Controller {
 	*/
 	public function index()
 	{
-		$response=new Response(view('welcome',['title'=>'全球时领袖社群']));
+		$response=new Response(view('welcome'));
 		$pid=Input::get('ref');
 		return $response->withCookie(cookie()->forever('ref_pid', $pid));
 	}

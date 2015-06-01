@@ -15,11 +15,8 @@
                     <p class="form-control-static">{{$meetup->id}}</p>
                 </div>
                 <div class="form-group">
-                     <label for="
-name">
-NAME</label>
-                     <p class="form-control-static">{{$meetup->
-name}}</p>
+                     <label for="name">NAME</label>
+                     <p class="form-control-static">{{$meetup->name}}</p>
                 </div>
                     <div class="form-group">
                      <label for="summary">SUMMARY</label>

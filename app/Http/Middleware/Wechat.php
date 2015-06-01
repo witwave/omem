@@ -1,6 +1,7 @@
 <?php namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Facades\Cookie;
 use Overtrue\Wechat\Auth;
 use Config;
 class Wechat {
@@ -38,6 +39,7 @@ class Wechat {
 			$user = $auth->authorize('', 'snsapi_userinfo',''); // 返回用户 Bag
 			$_SESSION['logged_user'] = $user;
 			// 跳转到其它授权才能访问的页面
+
 		}
 	
 		return $next($request);
