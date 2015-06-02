@@ -25,14 +25,15 @@
                 <!-- form start -->
                 <form action="{{ route('meetups.store') }}" method="POST">
                     <div class="box-body">
+                        @include('errors.flash')
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
-                            <label for="name">名称</label>
-                            <input type="text" name="name" class="form-control" value=""/>
+                            <label for="name">标题</label>
+                            <input type="text" name="title" class="form-control" value=""/>
                         </div>
                         <div class="form-group">
-                            <label for="summary">简要</label>
+                            <label for="summary">摘要</label>
                             <textarea type="text" name="summary" class="form-control" cols="60" rows="2"></textarea>
                         </div>
                         <div class="form-group">
@@ -73,14 +74,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="mark">备注</label>
+                            <input type="text" name="mark" class="form-control" value=""/>
+                        </div>
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="online" value="1"> 是否发布
                             </label>
-                        </div>
-                        <div class="form-group">
-                            <label for="mark">备注</label>
-                            <input type="text" name="mark" class="form-control" value=""/>
                         </div>
                     </div>
                     <div class="box-footer">

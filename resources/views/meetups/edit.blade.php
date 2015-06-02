@@ -25,15 +25,16 @@
                 <!-- form start -->
                 <form action="{{ route('meetups.update',$meetup->id) }}" method="POST">
                     <div class="box-body">
+                        @include('errors.flash')
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
-                            <label for="name">名称</label>
-                            <input type="text" name="name" class="form-control" value="{{$meetup->name}}"/>
+                            <label for="name">标题</label>
+                            <input type="text" name="title" class="form-control" value="{{$meetup->name}}"/>
                         </div>
                         <div class="form-group">
-                            <label for="summary">简要</label>
+                            <label for="summary">摘要</label>
                             <textarea type="text" name="summary" class="form-control" cols="60" rows="2">{!! $meetup->summary !!}</textarea>
                         </div>
                         <div class="form-group">

@@ -45,6 +45,11 @@ return [
             'path' => 'members',
             'icon' => 'fa fa-user'
         ],
+        'address'=>[
+            'name' => '通讯录',
+            'path' => 'address',
+            'icon' => 'fa fa-phone'
+        ],
         'todo' => [
             'name' => '计划',
             'path' => 'todo',

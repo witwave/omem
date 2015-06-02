@@ -25,7 +25,7 @@
                 <form action="{{ route('members.store') }}" method="POST">
                     <div class="box-body">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+                        @include('errors.flash')
                         <div class="row">
                             <div class="form-group col-xs-6">
                                 <label for="name">姓名</label>

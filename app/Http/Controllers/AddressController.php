@@ -1,13 +1,18 @@
 <?php namespace App\Http\Controllers;
+/**
+ * Created by PhpStorm.
+ * User: witwave
+ * Date: 15-6-2
+ * Time: 下午4:58
+ */
 
-use App\Group;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Member;
 use Illuminate\Http\Request;
 
-class MemberController extends Controller
+class AddressController extends Controller
 {
 
     /**
@@ -18,7 +23,6 @@ class MemberController extends Controller
     public function index(Request $request)
     {
         $size = 10;
-        $groups = Group::all();
         $builder = Member::query();
         $q = $request->get('q', null);
         if ($q) {
@@ -29,7 +33,7 @@ class MemberController extends Controller
             $builder->where('group_id', '=', $gid);
         }
         $members = $builder->paginate($size);
-        return view('members.index', compact('members', 'groups', 'gid', 'size', 'q'));
+        return view('address.index', compact('members', 'gid', 'size', 'q'));
     }
 
     /**
@@ -39,7 +43,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        return view('members.create');
+        return view('address.create');
     }
 
     /**
@@ -77,11 +81,11 @@ class MemberController extends Controller
         $member->address = $request->input("address");
         $member->sign = $request->input("sign");
         $member->mark = $request->input("mark");
-
         $member->save();
 
-        return redirect()->route('members.index')->with('message', 'Item created successfully.');
+        return redirect()->route('address.index')->with('message', 'Item created successfully.');
     }
+
 
     /**
      * Display the specified resource.
@@ -97,7 +101,7 @@ class MemberController extends Controller
         foreach ($data as $event) {
             $events[date('Y-m-d', strtotime($event->created_at))][] = $event;
         }
-        return view('members.show', compact('member', 'events'));
+        return view('address.show', compact('member', 'events'));
     }
 
     /**
@@ -110,7 +114,7 @@ class MemberController extends Controller
     {
         $member = Member::findOrFail($id);
 
-        return view('members.edit', compact('member'));
+        return view('address.edit', compact('member'));
     }
 
     /**
@@ -150,7 +154,7 @@ class MemberController extends Controller
         $member->mark = $request->input("mark");
         $member->save();
 
-        return redirect()->route('members.index')->with('message', 'Item updated successfully.');
+        return redirect()->route('address.index')->with('message', 'Item updated successfully.');
     }
 
     /**
@@ -164,7 +168,6 @@ class MemberController extends Controller
         $member = Member::findOrFail($id);
         $member->delete();
 
-        return redirect()->route('members.index')->with('message', 'Item deleted successfully.');
+        return redirect()->route('address.index')->with('message', 'Item deleted successfully.');
     }
-
 }

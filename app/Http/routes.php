@@ -28,13 +28,20 @@ Route::get('meetup', 'MeetupController@main'); //显示活动主页
 Route::get('meetup/{id}', 'MeetupController@detail'); //显示活动详细
 Route::post('meetup/{id}/join', 'MeetupController@join'); //报名参加
 
-
 Route::get('wechat', ['middleware' => 'auth.wechat', 'uses' => 'WelcomeController@index']);
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
+    // 'password' => 'Auth\PasswordController',
 ]);
+
+Route::get('admin', function () {
+    if (Auth::guest()) {
+        return Redirect::to('auth/login');
+    } else {
+        return Redirect::to('dashboard');
+    }
+});
 
 
 /**
@@ -50,6 +57,8 @@ Route::group(['middleware' => 'auth.admin'], function () {
     Route::resource("groups", "GroupController");
     Route::resource("members", "MemberController");
     Route::resource("events", "EventController");
+
+    Route::resource("address", "AddressController");
 
     Route::resource("pages", "PageController");
 

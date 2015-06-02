@@ -76,11 +76,11 @@
                             <?php endif?>
                             <div class="btn-group">
                                 <a class="btn btn-default btn-sm"
-                                   href="{{url('members')}}?gid={{$gid}}&page=<?php echo $members->perPage()?>">
+                                   href="{{url('members')}}?gid={{$gid}}&page=<?php echo $members->currentPage()>$members->perPage()?$members->currentPage()-1:$members->perPage()?>">
                                     <i class="fa fa-chevron-left"></i>
                                 </a>
                                 <a class="btn btn-default btn-sm"
-                                   href="{{url('members')}}?gid={{$gid}}&page=<?php echo $members->lastPage()?>">
+                                   href="{{url('members')}}?gid={{$gid}}&page=<?php echo $members->currentPage()<$members->lastPage()?$members->currentPage()+1:$members->lastPage()?>">
                                     <i class="fa fa-chevron-right"></i>
                                 </a>
                             </div>

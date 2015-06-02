@@ -50,11 +50,20 @@ class MeetupController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|max:120',
+            'summary' => 'required|max:500',
+            'content' => 'required|max:4000',
+            'end_time' => 'required|date',
+            'max_count' => 'sometimes|required|numeric',
+            'price' => 'sometimes|required|numeric'
+        ]);
+
         $meetup = new Meetup();
         $meetup->pv = 0;
         $meetup->uv = 0;
         $meetup->join_count = 0;
-        $meetup->name = $request->input("name");
+        $meetup->name = $request->input("title");
         $meetup->summary = $request->input("summary");
         $meetup->content = $request->input("content");
         $meetup->end_time = $request->input("end_time");
@@ -101,10 +110,16 @@ class MeetupController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        $this->validate($request, [
+            'title' => 'required|max:120',
+            'summary' => 'required|max:500',
+            'content' => 'required|max:4000',
+            'end_time' => 'required|date',
+            'max_count' => 'sometimes|required|numeric',
+            'price' => 'sometimes|required|numeric'
+        ]);
         $meetup = Meetup::findOrFail($id);
-
-        $meetup->name = $request->input("name");
+        $meetup->name = $request->input("title");
         $meetup->summary = $request->input("summary");
         $meetup->content = $request->input("content");
         $meetup->end_time = $request->input("end_time");
@@ -125,7 +140,6 @@ class MeetupController extends Controller
     {
         $meetup = Meetup::findOrFail($id);
         $meetup->delete();
-
         return redirect()->route('meetups.index')->with('message', 'Item deleted successfully.');
     }
 
