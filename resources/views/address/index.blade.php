@@ -31,7 +31,6 @@
                         </tr>
                         </thead>
                         <tbody>
-
                         @foreach($members as $member)
                             <tr>
                                 <td><input type="checkbox" value="{{$member->id}}"/></td>

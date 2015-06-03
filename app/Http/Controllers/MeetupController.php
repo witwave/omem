@@ -2,23 +2,49 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Redirect;
 use App\Meetup;
 use Illuminate\Http\Request;
+use App\Joiner;
+use Session;
 
 class MeetupController extends Controller
 {
 
     public function main()
     {
-        $meetups = Meetup::all();
+        $meetups = Meetup::all()->sortByDesc('created_at');
         return view('meetup.index', compact('meetups'));
     }
 
-    public function detaill($id)
+    public function detail($id)
     {
         $meetup = Meetup::findOrFail($id);
         return view('meetup.detail', compact('meetup'));
+    }
+
+    /**
+     * 前台用户报名参家活动
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function join(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:10',
+            'mobile' => 'required|numeric|digits:11'
+        ]);
+        $joiner = new Joiner();
+        $joiner->meetup_id = $id;
+        $joiner->member_id = Session::get('member_id', 0);
+        $joiner->name = $request->input("name");
+        $joiner->mobile = $request->input("mobile");
+        $joiner->meetup_name = $request->input("meetup_name");
+        $joiner->signed = 0;
+        if ($joiner->save())
+            return Redirect::back()->with('msg', '报名成功，请您准时参加');
+        else
+            return Redirect::back()->withInput();
     }
 
     /**
