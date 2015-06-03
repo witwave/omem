@@ -15,6 +15,16 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">所有联系人</h3>
+
+                    <div class="box-tools pull-right">
+                        <div class="has-feedback">
+                            <form action="{{url('address')}}" method="GET">
+                                <input type="text" name="q" class="form-control input-sm" placeholder="姓名|电话|微信|公司"
+                                       value="{{$q}}"/>
+                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -27,15 +37,14 @@
                             <th>电话</th>
                             <th>微信</th>
                             <th>公司</th>
-                            <th class="text-right">操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($members as $member)
                             <tr>
-                                <td><input type="checkbox" value="{{$member->id}}"/></td>
+                                <td>{{$member->id}}</td>
                                 <td class="mailbox-name">
-                                    <a href="{{ route('address.show', $member->id) }}" target="_blank">
+                                    <a href="{{ route('members.show', $member->id) }}" target="_blank">
                                         {{$member->name?$member->name:$member->nickname}}
                                     </a>
                                 </td>
@@ -43,23 +52,11 @@
                                 <td>{{$member->phone}}</td>
                                 <td>{{$member->wechat}}</td>
                                 <td>{{$member->company_name}}</td>
-                                <td class="text-right">
-                                    <a class="btn btn-primary" href="{{ route('address.show', $member->id) }}">查看</a>
-                                    <a class="btn btn-warning " href="{{ route('address.edit', $member->id) }}">编辑</a>
-                                    <form action="{{ route('address.destroy', $member->id) }}" method="POST"
-                                          style="display: inline;"
-                                          onsubmit="if(confirm('确认要删除吗')) { return true } else {return false };">
-                                        <input type="hidden" name="_method" value="DELETE"><input type="hidden"
-                                                                                                  name="_token"
-                                                                                                  value="{{ csrf_token() }}">
-                                        <button class="btn btn-danger" type="submit">删除</button>
-                                    </form>
-                                </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-                    <a class="btn btn-success" href="{{ route('address.create') }}">新增</a>
+                    <?php echo $members->render()?>
                 </div>
             </div>
         </div>

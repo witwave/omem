@@ -46,15 +46,19 @@
                                 <td>{{$meetup->pv}}</td>
                                 <td>{{$meetup->uv}}</td>
                                 <td class="text-right">
-                                    <a class="btn btn-primary" href="{{ route('meetups.show', $meetup->id) }}">查看</a>
+                                    <a class="btn btn-default" title="显示签到二维码" target="_blank"
+                                       href="{{ url('qrcode').'?size=300&text='.urlencode( url('meetup',$meetup->id).'/sign') }}">签到</a>
+                                    <a class="btn btn-primary" title="查看活动报名"
+                                       href="{{ route('meetups.show', $meetup->id) }}">查看</a>
                                     <a class="btn btn-warning " href="{{ route('meetups.edit', $meetup->id) }}">编辑</a>
 
                                     <form action="{{ route('meetups.destroy', $meetup->id) }}" method="POST"
                                           style="display: inline;"
                                           onsubmit="if(confirm('确认要删除吗')) { return true } else {return false };">
-                                        <input type="hidden" name="_method" value="DELETE"><input type="hidden"
-                                                                                                  name="_token"
-                                                                                                  value="{{ csrf_token() }}">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden"
+                                               name="_token"
+                                               value="{{ csrf_token() }}">
                                         <button class="btn btn-danger" type="submit">删除</button>
                                     </form>
                                 </td>

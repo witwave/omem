@@ -13,7 +13,6 @@
             <h3>精彩有趣的线下活动</h3>
 
             <div>让我们一起面对面的交流吧</div>
-
         </div>
     </div>
     <div class="panel panel-default">
@@ -27,11 +26,9 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <h4>{{ $item->name }}</h4>
-
                                 <p>
                                     <small>{{ $item->summary }}</small>
                                 </p>
-                                <p></p>
                                 <p class="text-right">
                                     <small>截止日期:
                                         <?php if (strtotime($item->end_time) < strtotime(date('Y-m-d'))):?>
@@ -48,5 +45,4 @@
             @endforeach
         </ul>
     </div>
-
 @endsection

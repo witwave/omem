@@ -47,6 +47,31 @@ class MeetupController extends Controller
             return Redirect::back()->withInput();
     }
 
+    public function sign(Request $request, $id)
+    {
+        $member_id = Session::get('member_id');
+        if (!$member_id) {
+            return Response::make('请先申请成会员');
+        }
+        $builder = Joiner::query();
+        $builder->where('meetup_id', $id);
+        $builder->where('member_id', $member_id);
+        $joiner = $builder->first();
+
+        if (!$joiner) {
+            return Response::make('您没有此活动的报名信息');
+        }
+        $joiner->signed = 1;
+        $joiner->signed_time = date('Y-m-d H:i:m');
+        if ($joiner->save()) {
+            return Response::make('签到成功');
+        } else {
+            return Response::make('签到失败，请重试！');
+        }
+
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -108,11 +133,19 @@ class MeetupController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $meetup = Meetup::findOrFail($id);
+        $size = 30;
+        $builder = Joiner::query();
+        $q = $request->get('q', null);
+        if ($q) {
+            $builder->where('name', 'LIKE', '%' . $q . '%');
+            $builder->orWhere('phone', 'LIKE', '%' . $q . '%');
+        }
+        $joiners = $builder->paginate($size);
 
-        return view('meetups.show', compact('meetup'));
+        return view('meetups.show', compact('meetup', 'joiners', 'q'));
     }
 
     /**

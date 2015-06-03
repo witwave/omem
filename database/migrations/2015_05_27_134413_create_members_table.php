@@ -35,6 +35,7 @@ class CreateMembersTable extends Migration
             $table->string('address', 256)->default('');
             $table->string('sign', 1000)->default('');
             $table->string('mark', 500)->default('');
+            $table->string('phone', 12)->default('');
             $table->softDeletes();
             $table->timestamps();
         });

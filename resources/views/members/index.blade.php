@@ -44,7 +44,7 @@
         <div class="col-md-9">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">所有会员</h3>
+                    <h3 class="box-title">会员列表</h3>
 
                     <div class="box-tools pull-right">
                         <div class="has-feedback">
@@ -62,11 +62,11 @@
                     <div class="mailbox-controls">
                         <!-- Check all button -->
                         <button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
-                        <div class="btn-group">
+                        <div class="btn-group hide">
                             <button class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
                         </div>
                         <!-- /.btn-group -->
-                        <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                        <button class="btn btn-default btn-sm hide"><i class="fa fa-refresh"></i></button>
                         <div class="pull-right">
                             <?php if ($members->total() > 0):?>
                             <?php echo 1 + ($members->currentPage() - 1) * $size ?>-
@@ -75,11 +75,11 @@
                             没有数据
                             <?php endif?>
                             <div class="btn-group">
-                                <a class="btn btn-default btn-sm"
+                                <a class="btn btn-default btn-sm" title="上一页"
                                    href="{{url('members')}}?gid={{$gid}}&page=<?php echo $members->currentPage()>$members->perPage()?$members->currentPage()-1:$members->perPage()?>">
                                     <i class="fa fa-chevron-left"></i>
                                 </a>
-                                <a class="btn btn-default btn-sm"
+                                <a class="btn btn-default btn-sm" title="下一页"
                                    href="{{url('members')}}?gid={{$gid}}&page=<?php echo $members->currentPage()<$members->lastPage()?$members->currentPage()+1:$members->lastPage()?>">
                                     <i class="fa fa-chevron-right"></i>
                                 </a>

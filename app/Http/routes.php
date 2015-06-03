@@ -28,6 +28,9 @@ Route::get('meetup', 'MeetupController@main'); //显示活动主页
 Route::get('meetup/{id}', 'MeetupController@detail'); //显示活动详细
 Route::post('meetup/{id}/join', 'MeetupController@join'); //报名参加
 
+
+Route::get('meetup/{id}/sign', ['middleware' => 'auth.wechat', 'users' => 'MeetupController@sign']);//签到
+
 Route::get('wechat', ['middleware' => 'auth.wechat', 'uses' => 'WelcomeController@index']);
 
 Route::controllers([

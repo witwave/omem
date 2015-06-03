@@ -50,7 +50,7 @@ return [
             'path' => 'address',
             'icon' => 'fa fa-phone'
         ],
-        'todo' => [
+       /* 'todo' => [
             'name' => '计划',
             'path' => 'todo',
             'icon' => 'fa fa-tasks'
@@ -59,6 +59,6 @@ return [
             'name' => '用户',
             'path' => 'user',
             'icon' => 'fa  fa-cog'
-        ],
+        ],*/
     ]
 ];

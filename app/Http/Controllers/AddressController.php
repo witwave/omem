@@ -22,15 +22,14 @@ class AddressController extends Controller
      */
     public function index(Request $request)
     {
-        $size = 10;
+        $size = 15;
         $builder = Member::query();
         $q = $request->get('q', null);
         if ($q) {
             $builder->where('name', 'LIKE', '%' . $q . '%');
-        }
-        $gid = $request->get('gid', null);
-        if ($gid) {
-            $builder->where('group_id', '=', $gid);
+            $builder->orWhere('phone', 'LIKE', '%' . $q . '%');
+            $builder->orWhere('wechat', 'LIKE', '%' . $q . '%');
+            $builder->orWhere('company_name', 'LIKE', '%' . $q . '%');
         }
         $members = $builder->paginate($size);
         return view('address.index', compact('members', 'gid', 'size', 'q'));
