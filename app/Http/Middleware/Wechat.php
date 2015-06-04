@@ -43,9 +43,10 @@ class Wechat {
 			//Session::set('wechat_user',$user);
             $_SESSION['wechat_user']=$user;
 			// 跳转到其它授权才能访问的页面
-
+            return null;
 		}
-	
-		return $next($request);
+        else{
+            return $next($request);
+        }
 	}
 }
