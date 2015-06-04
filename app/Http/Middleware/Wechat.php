@@ -38,9 +38,10 @@ class Wechat {
 		$auth = new Auth($appId, $secret);
 		// 请一定要自己存储用户的登录信息，不要每次都授权
         //var_dump($request->url());exit();
-		if (empty($_SESSION['logged_user'])) {
+		if (empty($_SESSION['wechat_user'])) {
 			$user = $auth->authorize($request->url(), 'snsapi_userinfo',''); // 返回用户 Bag
-			Session::set('wechat_user',$user);
+			//Session::set('wechat_user',$user);
+            $_SESSION['wechat_user']=$user;
 			// 跳转到其它授权才能访问的页面
 
 		}

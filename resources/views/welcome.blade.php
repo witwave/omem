@@ -5,7 +5,7 @@
 
 @section('content')
     <?php
-            var_dump(Session::get('wechat_user'));
+    var_dump($_SESSION['wechat_user']);
     ?>
 @if (Session::has('msg'))
 <div class="container" style="margin-top:5px">
