@@ -4,6 +4,9 @@
 @endsection
 
 @section('content')
+    <?php
+            var_dump(Session::get('wechat_user'));
+    ?>
 @if (Session::has('msg'))
 <div class="container" style="margin-top:5px">
 	<div class="alert alert-success" role="alert"><p>{!!Session::get('msg')!!}</p></div>
