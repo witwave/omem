@@ -14,7 +14,7 @@ use Endroid\QrCode\QrCode;
 Route::any('auth/wechat', function () {
     $appId = Config::get('wechat.appid');
     $secret = Config::get('wechat.appsecret');
-    $callback = 'http://new.lovejog.com';
+    $callback = 'http://omem.lovejog.com';
     return view('auth.wechat', ['appid' => $appId, 'secret' => $secret, 'callback_uri' => $callback]);
 });
 

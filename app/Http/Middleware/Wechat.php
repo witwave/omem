@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Cookie;
 use Overtrue\Wechat\Auth;
 use Config;
 use Session;
+use Log;
 
 class Wechat {
 	/**
@@ -39,14 +40,19 @@ class Wechat {
 		// 请一定要自己存储用户的登录信息，不要每次都授权
         //var_dump($request->url());exit();
 		if (empty($_SESSION['wechat_user'])) {
-			$user = $auth->authorize($request->url(), 'snsapi_userinfo',''); // 返回用户 Bag
+			$user = $auth->authorize(null, 'snsapi_userinfo',''); // 返回用户 Bag
+            if($user){
+
+            }
+            Log::debug('user'.json_encode($user));
 			//Session::set('wechat_user',$user);
             $_SESSION['wechat_user']=$user;
 			// 跳转到其它授权才能访问的页面
-            return $next($request);
+           // return $next($request);
 		}
         else{
             return $next($request);
         }
+
 	}
 }
