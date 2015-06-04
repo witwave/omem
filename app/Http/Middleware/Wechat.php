@@ -42,13 +42,15 @@ class Wechat {
 		if (empty($_SESSION['wechat_user'])) {
 			$user = $auth->authorize(null, 'snsapi_userinfo',''); // 返回用户 Bag
             if($user){
-
+                return $next($request);
+            }else{
+                return response('Unauthorized.', 401);
             }
             Log::debug('user'.json_encode($user));
 			//Session::set('wechat_user',$user);
             $_SESSION['wechat_user']=$user;
 			// 跳转到其它授权才能访问的页面
-           // return $next($request);
+           //
 		}
         else{
             return $next($request);
