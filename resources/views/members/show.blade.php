@@ -123,7 +123,7 @@
                             $card = "BEGIN:VCARD\nVERSION:3.0\n";
                             $card .= "FN:$member->name\nNICKNAME:$member->nickname\norG:$member->company_name\n";
                             $card .= "TITLE:$member->position\nTEL;TYPE=work:\nTEL:$member->phone\nEMAIL:$member->email\n";
-                            $card .= "ADR;TYPE=HOME:;;$member->address\n"
+                            $card .= "ADR;TYPE=HOME:;;$member->address\n";
                             $card .= "END:VCARD";
                             ?>
                             <label for="name">二维码名片</label>
