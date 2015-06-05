@@ -1,4 +1,5 @@
 <?php namespace App\Http\Middleware;
+use App\Member;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Cookie;
@@ -6,6 +7,7 @@ use Overtrue\Wechat\Auth;
 use Config;
 use Session;
 use Log;
+use App\Member;
 
 class Wechat {
 	/**
@@ -43,8 +45,18 @@ class Wechat {
 		if (empty(Session::get('wechat_user'))) {
 			$user = $auth->authorize(null, 'snsapi_userinfo','abc'); // 返回用户 Bag
             if($user){
-                $_SESSION['wechat_user']=$user;
                 Session::set('wechat_user',$user);
+                Session::set('openid',$user['openid']);
+                Member::create([
+                    'pid'=>Input::get('ref',0),
+                    'qq'=>'',
+                    'openid'=>$user['openid'],
+                    'nickname'=>$user['nickname'],
+                    'sex'=>$user['sex'],
+                    'live_city'=>$user['city'],
+                    'province'=>$user['province'],
+                    'avatar'=>$user['headimgurl']
+                ]);
                 return $next($request);
             }else{
                 return response('Unauthorized.', 401);
