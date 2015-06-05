@@ -1,6 +1,6 @@
 @extends('main')
 @section('title')
-全球时领袖社群
+全球时代领袖社群
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
 @endif
 <div class="jumbotron masthead">
 	<div class="container">
-		<h3>全球时领袖社群</h3>
+		<h3>全球时代领袖社群</h3>
 		<div>让天下没有陌生的孰悉的人，打造全球最大的华人本地化文化交流社群</div>
 		<p class="masthead-button-links">
 			<a role="button"  href="/join" class="btn btn-lg btn-primary btn-shadow">立即加入</a>
