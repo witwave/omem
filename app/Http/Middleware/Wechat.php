@@ -7,7 +7,6 @@ use Overtrue\Wechat\Auth;
 use Config;
 use Session;
 use Log;
-use App\Member;
 
 class Wechat {
 	/**
