@@ -13,6 +13,7 @@
 			@include('alert')
 			<form class="form-horizontal" role="form" method="POST" action="{{ url('/join') }}">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="openid" value="{{ $openid }}">
 				<div class="form-group">
 					<label class="col-md-4 control-label">姓名</label><span style="color:red">*</span>
 					<div class="col-md-6">
@@ -58,13 +59,13 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label">常用邮箱</label>
 					<div class="col-md-6">
-						<input type="email" class="form-control" name="mail" placeholder="可选项" value="{{ old('email') }}">
+						<input type="email" class="form-control" name="email" placeholder="可选项" value="{{ old('email') }}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-md-4 control-label">个性签名</label>
 					<div class="col-md-6">
-						<textarea class="form-control" rows="3" name="sign" placeholder="请填写一名喜欢的话或者名言">{{ old('wechat') }}</textarea>
+						<textarea class="form-control" rows="3" name="sign" placeholder="请填写一名喜欢的话或者名言">{{ old('sign') }}</textarea>
 					</div>
 				</div>
 				<div class="form-group">

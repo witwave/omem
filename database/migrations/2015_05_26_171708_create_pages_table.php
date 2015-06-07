@@ -16,7 +16,7 @@ class CreatePagesTable extends Migration {
             $table->increments('id');
             $table->string('name', 200);
             $table->string('title',200);
-            $table->text('content')->default('');
+            $table->text('content');
             $table->softDeletes();
             $table->timestamps();
         });

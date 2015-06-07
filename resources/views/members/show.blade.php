@@ -124,10 +124,15 @@
                             $card .= "FN:$member->name\nNICKNAME:$member->nickname\norG:$member->company_name\n";
                             $card .= "TITLE:$member->position\nTEL;TYPE=work:\nTEL:$member->phone\nEMAIL:$member->email\n";
                             $card .= "ADR;TYPE=HOME:;;$member->address\n";
+                          //  $card .= "PHOTO;VALUE=URL;TYPE=JPEG:$member->avatar\n";
                             $card .= "END:VCARD";
                             ?>
                             <label for="name">二维码名片</label>
                             <img src="{{ url('qrcode').'?size=200&text='.urlencode($card) }}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="avatar">图像</label>
+                                <img src=" {{$member->avatar}}" style="height: 100px">
                         </div>
                         <div class="form-group">
                             <label for="name">姓名</label>
@@ -159,11 +164,7 @@
 
                             <p class="form-control-static">{{$member->qq}}</p>
                         </div>
-                        <div class="form-group">
-                            <label for="avatar">图像</label>
 
-                            <p class="form-control-static">{{$member->avatar}}</p>
-                        </div>
                         <div class="form-group">
                             <label for="email">邮箱</label>
 

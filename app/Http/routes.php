@@ -19,9 +19,12 @@ Route::any('auth/wechat', function () {
 });
 
 Route::get('', 'WelcomeController@index'); //首页
+
 Route::get('aboutus', 'PageController@about'); //介绍页
 Route::get('contactus', 'PageController@contact'); //联系页
-Route::get('join/apply', 'JoinController@showJoin'); //显示加入表单页
+
+Route::get('join/apply', ['middleware' => 'auth.wechat' ,'uses'=> 'JoinController@showJoin']); //显示加入表单页
+
 Route::get('join', 'JoinController@index'); //显示加入介绍页
 Route::post('join', 'JoinController@join'); //处理加入页
 Route::get('meetup', 'MeetupController@main'); //显示活动主页
@@ -29,7 +32,7 @@ Route::get('meetup/{id}', 'MeetupController@detail'); //显示活动详细
 Route::post('meetup/{id}/join', 'MeetupController@join'); //报名参加
 
 
-Route::get('meetup/{id}/sign', ['middleware' => 'auth.wechat', 'users' => 'MeetupController@sign']);//签到
+Route::get('meetup/{id}/sign', ['middleware' => 'auth.wechat', 'uses' => 'MeetupController@sign']);//签到
 
 Route::get('wechat', ['middleware' => 'auth.wechat', 'uses' => 'WelcomeController@index']);
 
